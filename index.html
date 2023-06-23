@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="mask-icon" sizes="any" href="https://igor-egorov.dev.altkraft.com/695361968/1/642d6041c5255c487c271100/Favicon.png" color="#FFF">
+    <link rel="apple-touch-icon" sizes="192x192" href="https://igor-egorov.dev.altkraft.com/695361968/1/642d6041c5255c487c271100/Favicon.png" />
+    <link rel="apple-touch-startup-image" href="https://igor-egorov.dev.altkraft.com/695361968/1/642d6041c5255c487c271100/Favicon.png">
+    <meta name="apple-mobile-web-app-title" content="WebPush App">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+
+    <link rel="manifest" href="/manifest.json">
+
+    <title>Title</title>
+    <script src="https://pxl.vladislav-chapliy.dev.altkraft.com/ak_container.js?id=MXwxMw.." ></script>
+</head>
+<body>
+<button type="button" id="init_sub" style="height: 100px; padding: 25px">initSubscription</button>
+<button type="button" id="run_push" style="height: 100px; padding: 25px">Получить уведомление</button>
+<script>
+    setInterval(() => {
+        console.log('counter');
+    }, 5000);
+
+    window.onload = () => {
+        window.akPush = new AKPush();
+    };
+
+    document.getElementById('run_push').addEventListener('click', function() {
+        fetch(
+            'https://click.andrey-morozov.dev.altkraft.com/trg/65512f8ec196edd65c541df5a9a08449ec91dbf287bb334c2f3de6b87e2969e3/43f669d7ef683766',
+            {
+                method: 'GET',
+                mode: 'no-cors',
+            },
+        ).then(console.log, console.log);
+    });
+    document.getElementById('init_sub').addEventListener('click', function() { // По клику на кнопку..
+        try {
+            akPush.initSubscription({ email: 'examplae@example.com' }) // ..показать форму подписки
+        }
+        catch (e) {
+            alert(JSON.stringify(e)); // Или записать ошибку в alert (консоль) браузера
+        }
+    });
+</script>
+</body>
+</html>
