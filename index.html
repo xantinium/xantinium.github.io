@@ -19,32 +19,29 @@
 <body>
 <button type="button" id="init_sub" style="height: 100px; padding: 25px">initSubscription</button>
 <button type="button" id="run_push" style="height: 100px; padding: 25px">Получить уведомление</button>
-<script>
-    setInterval(() => {
-        console.log('counter');
-    }, 5000);
 
-    window.onload = () => {
-        window.akPush = new AKPush();
-    };
-
-    document.getElementById('run_push').addEventListener('click', function() {
-        fetch(
-            'https://click.andrey-morozov.dev.altkraft.com/trg/65512f8ec196edd65c541df5a9a08449ec91dbf287bb334c2f3de6b87e2969e3/43f669d7ef683766',
-            {
-                method: 'GET',
-                mode: 'no-cors',
-            },
-        ).then(console.log, console.log);
-    });
-    document.getElementById('init_sub').addEventListener('click', function() { // По клику на кнопку..
-        try {
-            akPush.initSubscription({ email: 'examplae@example.com' }) // ..показать форму подписки
-        }
-        catch (e) {
-            alert(JSON.stringify(e)); // Или записать ошибку в alert (консоль) браузера
-        }
-    });
-</script>
+        <script>
+            
+             (function (popupFunc) {
+                    var script = document.createElement('script');
+                    var firstScript = document.getElementsByTagName('script')[0];
+                    window[popupFunc] = window[popupFunc] || function () {
+                        (window[popupFunc].actions = window[popupFunc].actions || []).push(arguments);
+                    };
+                    window[popupFunc].last_init = 1 * new Date()
+                    window['ACPopupFuncNamePlaceholder'] = popupFunc;
+                    script.async = true;
+                    script.src = 'https://pxl.vladislav-chapliy.dev.altkraft.com' + '/popup/v1/js/popupLibrary.js';
+                    firstScript.parentNode.insertBefore(script, firstScript);
+             })('acpopup');
+    
+        </script>
+        <script>
+            
+              acpopup('create', 'AP-AHVjM5wMkD1eVl_4f');
+              acpopup('show', 'AP-AHVjM5wMkD1eVl_4f');
+    
+        </script>
+    
 </body>
 </html>
