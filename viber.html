@@ -1,0 +1,677 @@
+<html><head>
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Viber message</title>
+    <style>
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        html {
+            box-sizing: border-box;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100%;
+            -webkit-text-size-adjust: none;
+            width: 400px !important;
+            margin: 0 auto;
+            font-family: sans-serif;
+        }
+
+        /* Device */
+
+        .device-galaxy-s8 {
+            height: 828px;
+            width: 380px;
+            position: relative;
+        }
+
+        .device-galaxy-s8 .device-frame {
+            background-color: #222;
+            border: solid #cfcfcf;
+            border-radius: 55px;
+            border-width: 5px 0;
+            padding: 48px 10px 40px 10px;
+            width: 400px;
+        }
+
+        .device-galaxy-s8 .device-content {
+            border: 2px solid #222;
+            border-radius: 34px;
+            height: 740px;
+            width: 379px;
+        }
+
+        .device-galaxy-s8 .device-stripe::after {
+            left: 48px;
+        }
+
+        .device-galaxy-s8 .device-stripe::before {
+            right: 48px;
+        }
+
+        .device-galaxy-s8 .device-sensors {
+            background: #666;
+            border-radius: 3px;
+            height: 6px;
+            left: 50%;
+            margin-left: -24px;
+            margin-top: -3px;
+            position: absolute;
+            top: 32px;
+            width: 48px;
+        }
+
+        .device-galaxy-s8 .device-sensors::after,
+        .device-galaxy-s8 .device-sensors::before {
+            background: #666;
+            border-radius: 50%;
+            content: "";
+            position: absolute;
+            top: 50%;
+        }
+
+        .device-galaxy-s8 .device-sensors::after {
+            box-shadow: -192px 0 #333, -174px 0 #333, -240px 0 #333;
+            height: 8px;
+            right: -90px;
+            margin-top: -4px;
+            width: 8px;
+        }
+
+        .device-galaxy-s8 .device-sensors::before {
+            box-shadow: 186px 0 #666;
+            height: 12px;
+            left: -90px;
+            margin-top: -6px;
+            width: 12px;
+        }
+
+        .device-galaxy-s8 .device-btns {
+            background: #9c9c9c;
+            border-radius: 3px 0 0 3px;
+            height: 116px;
+            left: -3px;
+            position: absolute;
+            top: 144px;
+            width: 3px;
+        }
+
+        .device-galaxy-s8 .device-btns::after {
+            background: #9c9c9c;
+            border-radius: 3px 0 0 3px;
+            content: "";
+            height: 54px;
+            left: 0;
+            position: absolute;
+            top: 164px;
+            width: 3px;
+        }
+
+        .device-galaxy-s8 .device-power {
+            background: #9c9c9c;
+            border-radius: 0 3px 3px 0;
+            height: 54px;
+            right: -22px;
+            position: absolute;
+            top: 260px;
+            width: 3px;
+        }
+
+        .device-galaxy-s8.device-blue .device-frame {
+            border-color: #a3c5e8;
+        }
+
+        .device-galaxy-s8.device-blue .device-stripe::after,
+        .device-galaxy-s8.device-blue .device-stripe::before {
+            border-color: rgba(255, 255, 255, .35);
+        }
+
+        .device-galaxy-s8.device-blue .device-btns,
+        .device-galaxy-s8.device-blue .device-btns::after {
+            background: #5192d4;
+        }
+
+        .device-galaxy-s8.device-blue .device-power {
+            background: #5192d4;
+        }
+
+        .corner {
+            float: right;
+            margin-top: -4px;
+            margin-right: -3px;
+        }
+
+        .page {
+            width: 100%;
+            height: 736px;
+        }
+
+        .marvel-device .screen {
+            text-align: left;
+        }
+
+        .screen-container {
+            height: 736px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Status Bar */
+
+        .status-bar {
+            height: 25px;
+            background: #737373;
+            color: #ffffff;
+            font-size: 14px;
+            padding: 0 8px;
+        }
+
+        .status-bar:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .status-bar div {
+            float: right;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0 0 0 8px;
+            font-weight: 600;
+        }
+
+        /* Chat */
+
+        .chat {
+            flex: 1 1 auto;
+        }
+
+        .chat-container {
+            height: 711px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* User Bar */
+
+        .user-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 55px;
+            background: #ffffff;
+            padding: 0 14px;
+            position: relative;
+            z-index: 1;
+            border-bottom: 1px solid rgba(0, 0, 0, .15);
+        }
+
+        .user-bar__icon {
+            cursor: pointer;
+        }
+
+        .user-bar__icon +  .user-bar__icon {
+            margin-left: 18px;
+        }
+
+        .user-bar__icon > svg {
+            fill: #7e6dff;
+            stroke: #7e6dff;
+        }
+
+        .user-bar__group {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-bar .name {
+            color: #000000;
+            font-size: 17px;
+            font-weight: 600;
+            text-overflow: ellipsis;
+            letter-spacing: 0.3px;
+            margin-top: 2px;
+            margin-left: 16px;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 110px;
+            text-transform: uppercase;
+        }
+
+        .user-bar__icon__back {
+            width: 26px;
+        }
+
+        .user-bar__icon__store {
+            width: 26px;
+        }
+
+        .user-bar__icon__info {
+            width: 32px;
+        }
+
+        .user-bar__icon__options {
+            width: 20px;
+        }
+
+        /* Conversation */
+
+        .conversation-container {
+            flex: 1;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            padding: 36px 8px 12px 8px;
+        }
+
+        .conversation-container::-webkit-scrollbar {
+            width: 5px;
+            z-index: 10;
+        }
+
+        .conversation-container::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        .conversation-container::-webkit-scrollbar-thumb {
+            background-color: #b3ada7;
+        }
+
+        /* Messages */
+
+        .message {
+            display: flex;
+            flex-direction: column;
+            max-width: 280px;
+            width: fit-content;
+            margin-left: 40px;
+            position: relative;
+            padding-bottom: 6px;
+            background-color: #efefef;
+            border-radius: 0px 12px 12px 12px;
+        }
+
+        .message + .message {
+            margin-top: 4px;
+            border-top-left-radius: 12px;
+        }
+
+        .message:first-child::before {
+            content: '';
+            width: 32px;
+            height: 32px;
+            toP: 0;
+            left: -40px;
+            position: absolute;
+            border-radius: 50%;
+            background-size: cover;
+            background-color: #ffffff;
+            background-image: url('data:image/png;base64,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');
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        }
+
+        .message__time {
+            color: #a7a7a7;
+            font-size: 13px;
+            align-self: flex-end;
+            margin-top: 8px;
+            margin-right: 8px;
+        }
+
+        .message-item + .message-item {
+            margin-top: 12px;
+        }
+
+        .message-item + .message__image,
+        .message-item + .message__video,
+        .message-item + .message__file {
+            margin-top: 24px;
+        }
+
+        .message__image:first-child,
+        .message__video:first-child,
+        .message__file:first-child {
+            border-radius: 12px 12px 0 0;
+        }
+
+        .message:first-child .message__image:first-child,
+        .message:first-child .message__video:first-child,
+        .message:first-child .message__file:first-child {
+            border-top-left-radius: 0;
+        }
+
+        .message__text {
+            margin: 0 12px;
+        }
+
+        .message__text:first-child {
+            margin-top: 12px;
+        }
+
+        .message__button,
+        .message__file__button {
+            text-align: center;
+            margin: 0 12px;
+            padding: 10px 0;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 18px;
+            background-color: #7e6dff;
+        }
+
+        .message__image {
+            width: 280px;
+            height: 280px;
+            border: 1px solid #c4c4c4;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .message__video {
+            width: 280px;
+            height: 280px;
+            border: 1px solid #c4c4c4;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .message__video__play {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, .4);
+            margin-top: 26px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .message__video__play > svg {
+            fill: #ffffff;
+            width: 60%;
+            margin-left: 8px;
+        }
+
+        .message__video__duration {
+            margin-top: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 1px #c4c4c4;
+        }
+
+        .message__file {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message__file__filename {
+            margin: 10px 12px 6px 12px;
+        }
+
+        .message__file__img {
+            width: 280px;
+            height: 280px;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: inherit;
+        }
+
+        .message__file__img > svg {
+            width: 70%;
+            stroke: #b2b2b2;
+        }
+
+        /* Compose */
+
+        .conversation-compose {
+            display: flex;
+            align-items: center;
+            padding-bottom: 28px;
+            height: 110px;
+            width: 100%;
+            z-index: 2;
+            margin-bottom: 0;
+            background-color: #ffffff;
+            border-top: 1px solid rgba(0, 0, 0, .15);
+        }
+
+        .conversation-compose .input-msg {
+            border: 0;
+            font-size: 16px;
+            margin: 0;
+            outline: none;
+            background-color: #ffffff;
+            padding: 14px 0;
+            cursor: text;
+        }
+
+        .conversation-compose__content-part {
+            flex: 1;
+            padding-left: 18px;
+        }
+
+        .conversation-compose__action-part {
+            width: 56px;
+            margin: 0 13px;
+        }
+
+        .conversation-compose__action-part button {
+            background: #7e6dff;
+            border: 0;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+            outline: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+        }
+
+        .conversation-compose__action-part button svg {
+            width: 50%;
+            position: relative;
+            left: 2px;
+            fill: #ffffff;
+        }
+
+        .conversation-compose__content-part__buttons {
+            display: flex;
+        }
+
+        .conversation-compose__content-part__buttons > div {
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+        }
+
+        .conversation-compose__content-part__buttons > div > svg {
+            stroke: rgba(0, 0, 0, .3);
+        }
+
+        .conversation-compose__content-part__buttons > div + div {
+            margin-left: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="device device-galaxy-s8 device-blue">
+        <div class="device-frame">
+            <div class="device-content">
+                <div class="page">
+                    <div class="marvel-device nexus5">
+                        <div class="screen">
+                            <div class="screen-container">
+                                <div class="status-bar">
+                                    <div class="time"></div>
+                                    <div class="battery"> <i class="zmdi zmdi-battery"></i> </div>
+                                    <div class="network"> <i class="zmdi zmdi-network"></i> </div>
+                                    <div class="wifi"> <i class="zmdi zmdi-wifi-alt-2"></i> </div>
+                                    <div class="star"> <i class="zmdi zmdi-star"></i> </div>
+                                </div>
+                                <div class="chat">
+                                    <div class="chat-container">
+                                        <div class="user-bar">
+                                            <div class="user-bar__group">
+                                                <div class="user-bar__icon user-bar__icon__back">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256l144-144M120 256h292"></path></svg>
+                                                </div>
+                                                <div class="name">
+                                                    <span>Altcraft</span>
+                                                </div>
+                                            </div>
+                                            <div class="user-bar__group">
+                                                <div class="user-bar__icon user-bar__icon__store">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M480 448h-12a4 4 0 01-4-4V273.51a4 4 0 00-5.24-3.86 104.92 104.92 0 01-28.32 4.78c-1.18 0-2.3.05-3.4.05a108.22 108.22 0 01-52.85-13.64 8.23 8.23 0 00-8 0 108.18 108.18 0 01-52.84 13.64 106.11 106.11 0 01-52.46-13.79 8.21 8.21 0 00-8.09 0 108.14 108.14 0 01-53.16 13.8 106.19 106.19 0 01-52.77-14 8.25 8.25 0 00-8.16 0 106.19 106.19 0 01-52.77 14c-1.09 0-2.19 0-3.37-.05h-.06a104.91 104.91 0 01-29.28-5.09 4 4 0 00-5.23 3.8V444a4 4 0 01-4 4H32.5c-8.64 0-16.1 6.64-16.48 15.28A16 16 0 0032 480h447.5c8.64 0 16.1-6.64 16.48-15.28A16 16 0 00480 448zm-256-68a4 4 0 01-4 4h-88a4 4 0 01-4-4v-64a12 12 0 0112-12h72a12 12 0 0112 12zm156 68h-72a4 4 0 01-4-4V316a12 12 0 0112-12h56a12 12 0 0112 12v128a4 4 0 01-4 4zM492.57 170.28l-42.92-98.49C438.41 47.62 412.74 32 384.25 32H127.7c-28.49 0-54.16 15.62-65.4 39.79l-42.92 98.49c-9 19.41 2.89 39.34 2.9 39.35l.28.45c.49.78 1.36 2 1.89 2.78.05.06.09.13.14.2l5 6.05a7.45 7.45 0 00.6.65l5 4.83.42.36a69.65 69.65 0 009.39 6.78v.05a74 74 0 0036 10.67h2.47a76.08 76.08 0 0051.89-20.31l.33-.31a7.94 7.94 0 0110.89 0l.33.31a77.3 77.3 0 00104.46 0 8 8 0 0110.87 0 77.31 77.31 0 00104.21.23 7.88 7.88 0 0110.71 0 76.81 76.81 0 0052.31 20.08h2.49a71.35 71.35 0 0035-10.7c.95-.57 1.86-1.17 2.78-1.77A71.33 71.33 0 00488 212.17l1.74-2.63q.26-.4.48-.84c1.66-3.38 10.56-20.76 2.35-38.42z"></path></svg>
+                                                </div>
+                                                <div class="user-bar__icon user-bar__icon__info">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 56C145.72 56 56 145.72 56 256s89.72 200 200 200 200-89.72 200-200S366.28 56 256 56zm0 82a26 26 0 11-26 26 26 26 0 0126-26zm48 226h-88a16 16 0 010-32h28v-88h-16a16 16 0 010-32h32a16 16 0 0116 16v104h28a16 16 0 010 32z"></path></svg>
+                                                </div>
+                                                <div class="user-bar__icon user-bar__icon__options">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><circle cx="256" cy="256" r="48"></circle><circle cx="256" cy="416" r="48"></circle><circle cx="256" cy="96" r="48"></circle></svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="conversation-container">
+
+                                            <div class="message">
+                                                <div class="message-item message__text">
+                                                    Рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст
+                                                </div>
+                                                <span class="message__time">11:10</span>
+                                            </div>
+
+                                            <div class="message">
+                                                <div class="message-item message__text">
+                                                    Рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст
+                                                </div>
+                                                <a class="message-item message__button" target="_blank">
+                                                    Кнопошка
+                                                </a>
+                                                <span class="message__time">11:10</span>
+                                            </div>
+
+                                            <div class="message">
+                                                <div class="message-item message__text">
+                                                    Рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст
+                                                </div>
+                                                <img class="message-item message__image" src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png">
+                                                <a class="message-item message__button" target="_blank">
+                                                    Кнопошка
+                                                </a>
+                                                <span class="message__time">11:10</span>
+                                            </div>
+
+                                            <div class="message">
+                                                <img class="message-item message__image" src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png">
+                                                <span class="message__time">11:10</span>
+                                            </div>
+
+                                            <div class="message">
+                                                <div class="message-item message__video" style="background-image: url('https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png');">
+                                                    <div class="message__video__play">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M133 440a35.37 35.37 0 01-17.5-4.67c-12-6.8-19.46-20-19.46-34.33V111c0-14.37 7.46-27.53 19.46-34.33a35.13 35.13 0 0135.77.45l247.85 148.36a36 36 0 010 61l-247.89 148.4A35.5 35.5 0 01133 440z"></path></svg>
+                                                    </div>
+                                                    <span class="message__video__duration">
+                                                        00:01:00
+                                                    </span>
+                                                </div>
+                                                <span class="message__time">11:10</span>
+                                            </div>
+
+                                            <div class="message">
+                                                <div class="message-item message__text">
+                                                    Рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст
+                                                </div>
+                                                <div class="message-item message__video" style="background-image: url('https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png');">
+                                                    <div class="message__video__play">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M133 440a35.37 35.37 0 01-17.5-4.67c-12-6.8-19.46-20-19.46-34.33V111c0-14.37 7.46-27.53 19.46-34.33a35.13 35.13 0 0135.77.45l247.85 148.36a36 36 0 010 61l-247.89 148.4A35.5 35.5 0 01133 440z"></path></svg>
+                                                    </div>
+                                                    <span class="message__video__duration">
+                                                        00:01:00
+                                                    </span>
+                                                </div>
+                                                <span class="message__time">11:10</span>
+                                            </div>
+
+                                            <div class="message">
+                                                <div class="message-item message__text">
+                                                    Рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст рыбка текст
+                                                </div>
+                                                <div class="message-item message__video" style="background-image: url('https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png');">
+                                                    <div class="message__video__play">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M133 440a35.37 35.37 0 01-17.5-4.67c-12-6.8-19.46-20-19.46-34.33V111c0-14.37 7.46-27.53 19.46-34.33a35.13 35.13 0 0135.77.45l247.85 148.36a36 36 0 010 61l-247.89 148.4A35.5 35.5 0 01133 440z"></path></svg>
+                                                    </div>
+                                                    <span class="message__video__duration">
+                                                        00:01:00
+                                                    </span>
+                                                </div>
+                                                <a class="message-item message__button" target="_blank">
+                                                    Кнопошка
+                                                </a>
+                                                <span class="message__time">11:10</span>
+                                            </div>
+
+                                            <div class="message">
+                                                <div class="message-item message__file">
+                                                    <div class="message-item message__file__img">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 221.25V416a48 48 0 01-48 48H144a48 48 0 01-48-48V96a48 48 0 0148-48h98.75a32 32 0 0122.62 9.37l141.26 141.26a32 32 0 019.37 22.62z" fill="none" stroke-linejoin="round" stroke-width="32"/><path d="M256 56v120a32 32 0 0032 32h120M176 288h160M176 368h160" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                                                    </div>
+                                                    <span class="message__file__filename">File.pdf</span>
+                                                    <a class="message__file__button">Open</a>
+                                                </div>
+                                                <span class="message__time">11:10</span>
+                                            </div>
+
+                                    </div>
+                                    <form class="conversation-compose">
+                                        <div class="conversation-compose__content-part">
+                                            <input class="input-msg" name="input" placeholder="Type a message" autocomplete="off" disabled="">
+                                            <div class="conversation-compose__content-part__buttons">
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect x="48" y="80" width="416" height="352" rx="48" ry="48" fill="none" stroke-linejoin="round" stroke-width="32"></rect><circle cx="336" cy="176" r="32" fill="none" stroke-miterlimit="10" stroke-width="32"></circle><path d="M304 335.79l-90.66-90.49a32 32 0 00-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0143.11-2L464 368" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path></svg>
+                                                </div>
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M350.54 148.68l-26.62-42.06C318.31 100.08 310.62 96 302 96h-92c-8.62 0-16.31 4.08-21.92 10.62l-26.62 42.06C155.85 155.23 148.62 160 140 160H80a32 32 0 00-32 32v192a32 32 0 0032 32h352a32 32 0 0032-32V192a32 32 0 00-32-32h-59c-8.65 0-16.85-4.77-22.46-11.32z" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><circle cx="256" cy="272" r="80" fill="none" stroke-miterlimit="10" stroke-width="32"></circle><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M124 158v-22h-24v22"></path></svg>
+                                                </div>
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M336 264.13V436c0 24.3-19.05 44-42.95 44H107c-23.95 0-43-19.7-43-44V172a44.26 44.26 0 0144-44h94.12a24.55 24.55 0 0117.49 7.36l109.15 111a25.4 25.4 0 017.24 17.77z" fill="none" stroke-linejoin="round" stroke-width="32"></path><path d="M200 128v108a28.34 28.34 0 0028 28h108" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path><path d="M176 128V76a44.26 44.26 0 0144-44h94a24.83 24.83 0 0117.61 7.36l109.15 111A25.09 25.09 0 01448 168v172c0 24.3-19.05 44-42.95 44H344" fill="none" stroke-linejoin="round" stroke-width="32"></path><path d="M312 32v108a28.34 28.34 0 0028 28h108" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path></svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="conversation-compose__action-part">
+                                            <button disabled="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M476.59 227.05l-.16-.07L49.35 49.84A23.56 23.56 0 0027.14 52 24.65 24.65 0 0016 72.59v113.29a24 24 0 0019.52 23.57l232.93 43.07a4 4 0 010 7.86L35.53 303.45A24 24 0 0016 327v113.31A23.57 23.57 0 0026.59 460a23.94 23.94 0 0013.22 4 24.55 24.55 0 009.52-1.93L476.4 285.94l.19-.09a32 32 0 000-58.8z"></path></svg>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="device-stripe"></div>
+    <div class="device-sensors"></div>
+    <div class="device-btns"></div>
+    <div class="device-power"></div>
+
+</body></html>
