@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: grey;
+            width: 100vw;
+            height: 100vh;
+        }
+        .ac-popup-close {
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background-color: rgba(211, 211, 211, 0.56);
+            border: 2px solid rgba(196, 196, 196, 0.56);
+            cursor: pointer;
+            transition: 0.3s;
+            stroke: #ffffff;
+        }
+        .ac-popup-close svg {
+            width: 24px;
+            height: 24px;
+            stroke: inherit;
+            stroke-width: 48;
+            stroke-linecap: round;
+            margin-left: -5px;
+        }
+    </style>
+</head>
+<body>
+    <button class="ac-popup-close">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path fill="none" d="M368 368L144 144M368 144L144 368"></path>
+        </svg>
+    </button>
+</body>
+</html>
