@@ -25,6 +25,15 @@
     <div class="fake-content"></div>
     <div class="cite">POPUP</div>
     <div class="fake-content"></div>
+    <script>
+        let counter = 29;
+        const id = setInterval(() => {
+            console.log(counter--);
+            if (counter === 0) {
+                clearInterval(id);
+            }
+        }, 1000);
+    </script>
 <script>
     (function (window, document, dataLayerName, containerID) {
         window[dataLayerName] = window[dataLayerName] || [];
