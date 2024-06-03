@@ -30,8 +30,20 @@
         </script>
         <script>
             
-      acpopup('create', 'AP-8u1Sq1KzzGhW77XWY');
-      acpopup('show', 'AP-8u1Sq1KzzGhW77XWY');
+      acpopup('create', 'AP-8u1Sq1KzzGhW77XWY', {
+          matching_mode: 'email',
+          matching: {
+              email: 'test@localhost',
+              db_ids: [26],
+          },
+      });
+      acpopup('show', 'AP-8u1Sq1KzzGhW77XWY', {
+          matching_mode: 'email',
+          matching: {
+              email: 'test@localhost',
+              db_ids: [26],
+          },
+      });
     
         </script>
     
