@@ -4,8 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AltCraftWebApp</title>
+    <script type="text/javascript" src="/ak-push.js"></script>
+    <link rel="manifest" href="/manifest.json"></link>
 </head>
 <body>
-    <script></script>
+    <button id="init_sub">Подписаться на уведомления</button>
+    <script>
+        document.getElementById('init_sub').addEventListener('click', () => {
+            const akPush = new AKPush();
+            
+            try {
+                akPush.initSubscription();
+            } catch (err) {
+                console.log('INIT ERROR', err);
+            }
+        });
+    </script>
 </body>
 </html>
