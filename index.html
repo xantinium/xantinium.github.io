@@ -9,6 +9,7 @@
 </head>
 <body>
     <button id="init_sub">Подписаться на уведомления</button>
+    <button id="open_popup">Открыть попап</button>
     <script>
         document.getElementById('init_sub').addEventListener('click', () => {
             const akPush = new AKPush();
@@ -38,10 +39,10 @@
     
         </script>
         <script>
-            
-      acpopup('create', 'AP-ADwGHoF5NCRtcvy83');
-      acpopup('show', 'AP-ADwGHoF5NCRtcvy83');
-    
+            document.getElementById('init_sub').addEventListener('click', () => {
+                acpopup('create', 'AP-ADwGHoF5NCRtcvy83');
+                acpopup('show', 'AP-ADwGHoF5NCRtcvy83');
+            });
         </script>
     
 </body>
