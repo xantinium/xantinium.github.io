@@ -1,24 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AltCraftWebApp</title>
-    <script type="text/javascript" src="/ak-push.js"></script>
-    <link rel="manifest" href="/manifest.json"></link>
-</head>
-<body>
-    <button id="init_sub">Подписаться на уведомления</button>
-    <script>
-        document.getElementById('init_sub').addEventListener('click', () => {
-            const akPush = new AKPush();
-            
-            try {
-                akPush.initSubscription();
-            } catch (err) {
-                console.log('INIT ERROR', err);
-            }
-        });
-    </script>    
-</body>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PUSH-уведомления</title>
+        <link rel="stylesheet" href="styles.css">
+
+        <!-- PUSH SDK -->
+        <script type="text/javascript" src="ak-push.js"></script>
+        <link rel="manifest" href="manifest.json">
+    </head>
+
+    <body>
+        <div class="UpdateData">
+            <input type="text" id="emailInput" placeholder="test@qa.altcraft.com">email для матчинга<br>
+            <input type="text" id="db_id" placeholder="1">id базы профилей<br>
+            <input type="text" id="fname" placeholder="Cool">текст для обновления _fname<br>
+            <input type="text" id="lname" placeholder="Tester">текст для обновления _lname<br>
+        </div>
+
+        <div class="Subscribe-container">
+            <p>Subscribe:</p>
+            <button type="button" id="init_sub">PUSH - подписка</button>
+            <script>    
+                document.getElementById('init_sub').addEventListener('click', function() {
+
+                    push = new AKPush();
+
+                    const email = (document.getElementById('emailInput').value.trim() == "") ? 'test@qa.altcraft.com': document.getElementById('emailInput').value.trim()  
+                    
+                    console.log(email)
+                    
+                    const fname = (document.getElementById('fname').value.trim() == "") ? "Cool" : document.getElementById('fname').value.trim()
+                    const lname = (document.getElementById('lname').value.trim() == "") ? "Tester" : document.getElementById('lname').value.trim()
+
+                    // определяем id базы для записи. Пытаемся преобразовать в массив чисел. Если ничего не передано, подставляем числовой литерал `1`
+                    const db_id = (document.getElementById('db_id').value != "" ? document.getElementById('db_id').value.split(',').map(Number) : 1)
+
+                    push.initSubscription(
+                        { 
+                            db: db_id,
+                            email: email
+                        },
+                        {
+                            _fname: fname,
+                            _lname: lname
+                        }
+                    )
+                });
+            </script>
+        </div>
+
+        <div class="UpdateSub-container">
+            <p>Update subscribe:</p>
+            <input type="checkbox" id="inexclusive">inexclusive<br>
+            <button type="button" id="update_sub">Обновление подписки</button>
+            <script>    
+                document.getElementById('update_sub').addEventListener('click', function() {
+                    const email = (document.getElementById('emailInput').value.trim() == "") ? 'test@qa.altcraft.com': document.getElementById('emailInput').value.trim()  
+                    
+                    window.email = email
+                    console.log(window.email)
+                    
+                    const fname = (document.getElementById('fname').value.trim() == "") ? "Cool" : document.getElementById('fname').value.trim()
+                    const lname = (document.getElementById('lname').value.trim() == "") ? "Tester" : document.getElementById('lname').value.trim()
+
+                    // определяем id базы для записи. Пытаемся преобразовать в массив чисел. Если ничего не передано, подставляем числовой литерал `1`
+                    const db_id = (document.getElementById('db_id').value != "" ? document.getElementById('db_id').value.split(',').map(Number) : 1)
+                    
+                    const inexclusive = document.getElementById('inexclusive').checked
+
+                    console.log(">>> inexclusive state is - " + inexclusive)
+                    push.updateSubscription(
+                        { 
+                            db: db_id,
+                            email: window.email
+                        },
+                        {
+                            _fname: fname,
+                            _lname: lname
+                        }, 
+                        {
+                            inexclusive: inexclusive // нужно ли приостанавливать все подписки на ресурс с текущим токеном браузера у остальных профилей
+                        }
+                    )
+                });
+            </script>
+        </div>
+
+        <div class="Unsubscribe-container">
+            <p>Unsubscribe</p>
+            <button type="button" id="init_suspend">Приостановить подписку</button>
+            <script>    
+                document.getElementById('init_suspend').addEventListener('click', function() {
+                    const email = (document.getElementById('emailInput').value.trim() == "") ? 'test@qa.altcraft.com': document.getElementById('emailInput').value.trim()  
+                    
+                    window.email = email
+                    console.log(window.email)
+                    
+                    const fname = (document.getElementById('fname').value.trim() == "") ? "Cool" : document.getElementById('fname').value.trim()
+                    const lname = (document.getElementById('lname').value.trim() == "") ? "Tester" : document.getElementById('lname').value.trim()
+
+                    // определяем id базы для записи. Пытаемся преобразовать в массив чисел. Если ничего не передано, подставляем числовой литерал `1`
+                    const db_id = (document.getElementById('db_id').value != "" ? document.getElementById('db_id').value.split(',').map(Number) : 1)
+                    
+                    push.suspendSubscription(
+                        { 
+                            db: db_id,
+                            email: email,
+                        }
+                        ,
+                        {
+                            _fname: fname,
+                            _lname: lname
+                        }
+                    )
+                });
+            </script>
+        </div>
+
+        <div class="RemoveToken-container">
+            <p>Remove token from browser localforage</p>
+            <button type="button" id="remove_token">remove_token</button>
+            <script>
+                document.getElementById('remove_token').addEventListener('click', function() {
+                    push.removeToken() // сбросить токен
+                });
+            </script>
+        </div>
+
+        <div class="PermissonData-container">
+            <button type="button" id="permission_status">Permissons status to log</button>
+            <script>
+                document.getElementById('permission_status').addEventListener('click', function() {
+                    const websitePushID = "web.com.altcraft.qa.webpush-et5eeghie0lae7ma";
+                    
+                    console.log("=== Push Notification Permissions ===");
+
+                    console.log("Notification.permission:", Notification.permission);
+                    
+                    if ('safari' in window && 'pushNotification' in window.safari) {
+                        const permissionData = window.safari.pushNotification.permission(websitePushID);
+                        console.log("safari.pushNotification.permission:");
+                        console.log("  permission:", permissionData.permission);
+                        console.log("  deviceToken:", permissionData.deviceToken || "No token available");
+                        console.log("  reason:", permissionData.reason || "No reason provided");
+                    }
+                });
+            </script>
+        </div>
+
+    </body>
+
 </html>
