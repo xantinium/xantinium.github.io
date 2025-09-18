@@ -154,6 +154,9 @@
             <button type="button" id="popup_open">Open</button>
 
             <script>
+
+            window.navigator.sendBeacon = null;
+            window.navigator.XMLHttpRequest = null;
                 
              (function (popupFunc) {
                     var script = document.createElement('script');
@@ -172,8 +175,6 @@
     
             <script>
                 document.getElementById('popup_open').addEventListener('click', function() {
-                  window.navigator.sendBeacon = null;
-                  window.navigator.XMLHttpRequest = null;
                   acpopup('create', 'AP-5SzidM9c3xvlTQFLv');
                   acpopup('show', 'AP-5SzidM9c3xvlTQFLv');
                 });
